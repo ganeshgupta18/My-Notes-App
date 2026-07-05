@@ -145,6 +145,16 @@ const NoteCard = ({ note, onEdit, onPin, onArchive, onTrash, onDelete, onRestore
             <audio
               src={audio}
               controls
+              onLoadedMetadata={(e) => {
+                const audioEl = e.currentTarget;
+                if (audioEl.duration === Infinity || isNaN(audioEl.duration)) {
+                  audioEl.currentTime = 1e101;
+                  audioEl.ontimeupdate = () => {
+                    audioEl.ontimeupdate = null;
+                    audioEl.currentTime = 0;
+                  };
+                }
+              }}
               className="w-full h-8 scale-95 accent-violet-600 outline-none"
             />
           </div>
