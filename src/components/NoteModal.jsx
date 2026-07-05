@@ -222,7 +222,7 @@ const NoteModal = ({ note, isOpen, onClose, onSave }) => {
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
             transition={{ type: 'spring', damping: 25, stiffness: 240 }}
             style={modalBgStyle}
-            className="relative aspect-[9/16] h-[78vh] w-auto max-w-[95vw] rounded-3xl glass-panel bg-slate-950 border border-slate-800 shadow-2xl p-6 flex flex-col overflow-y-auto z-10"
+            className="relative w-full max-w-md md:max-w-lg rounded-3xl glass-panel bg-slate-950 border border-slate-800 shadow-2xl p-6 flex flex-col max-h-[90vh] overflow-y-auto z-10"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-900 pb-4 mb-5 shrink-0">

@@ -8,26 +8,10 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [profileImage, setProfileImage] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024 * 1.5) { // 1.5MB limit
-        setError('Avatar photo must be smaller than 1.5 MB.');
-        return;
-      }
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +24,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      await register(name, email, password, profileImage);
+      await register(name, email, password, '');
       navigate('/');
     } catch (err) {
       setError(err.message || 'Registration failed. Try a different email.');
@@ -87,36 +71,6 @@ const Register = () => {
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
-          {/* Base64 Avatar Selector */}
-          <div className="flex flex-col items-center gap-2 mb-2">
-            <label className="text-xs font-bold text-slate-400 tracking-wider uppercase">
-              Profile Avatar
-            </label>
-            <div className="relative group cursor-pointer">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-              />
-              {profileImage ? (
-                <img
-                  src={profileImage}
-                  alt="Avatar Preview"
-                  className="w-20 h-20 rounded-[35%] object-cover ring-2 ring-violet-500/40"
-                />
-              ) : (
-                <div className="w-20 h-20 rounded-[35%] bg-slate-900 border border-slate-800 flex flex-col items-center justify-center text-slate-400 group-hover:text-white transition-all ring-2 ring-violet-500/10">
-                  <IoCameraOutline className="w-6 h-6 mb-1" />
-                  <span className="text-[10px] font-semibold">Upload</span>
-                </div>
-              )}
-              <div className="absolute inset-0 bg-black/40 rounded-[35%] items-center justify-center hidden group-hover:flex">
-                <IoCameraOutline className="w-5 h-5 text-white" />
-              </div>
-            </div>
-          </div>
-
           {/* Full Name */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-bold text-slate-400 tracking-wider uppercase ml-1">
@@ -126,7 +80,7 @@ const Register = () => {
               <IoPersonOutline className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
               <input
                 type="text"
-                placeholder="Jane Doe"
+                placeholder="Enter full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 rounded-2xl glass-input bg-slate-900/30 text-slate-200 placeholder-slate-650 text-sm font-semibold"
@@ -144,7 +98,7 @@ const Register = () => {
               <IoMailOutline className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
               <input
                 type="email"
-                placeholder="you@example.com"
+                placeholder="Enter email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 rounded-2xl glass-input bg-slate-900/30 text-slate-200 placeholder-slate-650 text-sm font-semibold"
@@ -162,7 +116,7 @@ const Register = () => {
               <IoLockClosedOutline className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
               <input
                 type="password"
-                placeholder="••••••••"
+                placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 rounded-2xl glass-input bg-slate-900/30 text-slate-200 placeholder-slate-650 text-sm font-semibold"

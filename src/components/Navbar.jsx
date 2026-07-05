@@ -78,21 +78,21 @@ const Navbar = ({ searchQuery, onSearchChange, onMenuToggle, onOpenProfile, view
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full glass-panel border-b border-slate-900 bg-slate-950/70 py-3 px-4 sm:px-6 flex items-center justify-between">
+    <header className="sticky top-0 z-30 w-full glass-panel border-b border-slate-900 bg-slate-950/70 py-2.5 px-3 sm:px-6 flex items-center justify-between gap-2">
       {/* Mobile Drawer Trigger & Brand Name */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
         <button
           onClick={onMenuToggle}
-          className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-colors"
+          className="lg:hidden p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-colors"
           aria-label="Toggle Menu"
         >
-          <IoMenuOutline className="w-6 h-6" />
+          <IoMenuOutline className="w-5.5 h-5.5" />
         </button>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <img
             src="/logo.png"
             alt="My Notes Logo"
-            className="w-9 h-9 rounded-[35%] object-cover shadow"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-[35%] object-cover shadow"
           />
           <span className="hidden sm:inline-block font-extrabold text-lg bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-yellow-400 tracking-wider font-outfit">
             My Notes
@@ -101,25 +101,25 @@ const Navbar = ({ searchQuery, onSearchChange, onMenuToggle, onOpenProfile, view
       </div>
 
       {/* Dynamic Search Box */}
-      <div className="flex-1 max-w-md mx-4 sm:mx-8">
+      <div className="flex-1 max-w-md mx-1 sm:mx-8">
         <div className="relative w-full">
-          <IoSearchOutline className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <IoSearchOutline className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
           <input
             type="text"
-            placeholder="Search notes, tags, content..."
+            placeholder="Search..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 text-sm rounded-xl glass-input bg-slate-900/40 text-slate-200 placeholder-slate-500"
+            className="w-full pl-8.5 pr-2.5 py-1.5 text-xs sm:text-sm rounded-xl glass-input bg-slate-900/40 text-slate-200 placeholder-slate-500"
           />
         </div>
       </div>
 
       {/* Actions: Notifications & Profile */}
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-1 sm:gap-3 shrink-0">
         {/* Grid/List View Toggle */}
         <motion.button
           onClick={onViewModeToggle}
-          className="p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-colors cursor-pointer"
+          className="hidden sm:inline-block p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-colors cursor-pointer"
           whileTap={{ scale: 0.95 }}
           title={viewMode === 'grid' ? 'List View' : 'Grid View'}
         >
@@ -155,7 +155,7 @@ const Navbar = ({ searchQuery, onSearchChange, onMenuToggle, onOpenProfile, view
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 12, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 mt-2.5 w-80 max-h-96 overflow-y-auto rounded-2xl glass-panel bg-slate-950/95 border border-slate-800 shadow-2xl p-4 flex flex-col gap-2 origin-top-right"
+                className="absolute right-0 mt-2.5 w-80 max-w-[calc(100vw-2rem)] max-h-96 overflow-y-auto rounded-2xl glass-panel bg-slate-950/95 border border-slate-800 shadow-2xl p-4 flex flex-col gap-2 origin-top-right z-50"
               >
                 <div className="flex items-center justify-between border-b border-slate-800/80 pb-2 mb-1">
                   <span className="font-bold text-sm text-slate-200">Activity History</span>
@@ -240,7 +240,7 @@ const Navbar = ({ searchQuery, onSearchChange, onMenuToggle, onOpenProfile, view
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 12, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 mt-2.5 w-52 rounded-2xl glass-panel bg-slate-950/95 border border-slate-800 shadow-2xl p-2 flex flex-col origin-top-right"
+                className="absolute right-0 mt-2.5 w-52 rounded-2xl glass-panel bg-slate-950/95 border border-slate-800 shadow-2xl p-2 flex flex-col origin-top-right z-50"
               >
                 <div className="px-3 py-2 border-b border-slate-800/80 mb-1">
                   <p className="text-xs text-slate-400">Signed in as</p>

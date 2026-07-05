@@ -765,35 +765,7 @@ const Dashboard = () => {
                     </div>
                   </div>
 
-                  {/* Name */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-bold text-slate-400 tracking-wider uppercase ml-1">
-                      Display Name
-                    </label>
-                    <input
-                      type="text"
-                      value={profileName}
-                      onChange={(e) => setProfileName(e.target.value)}
-                      disabled={profileLoading}
-                      className="w-full px-4 py-2.5 rounded-2xl glass-input bg-slate-900/30 text-slate-100 placeholder-slate-600 text-xs font-semibold"
-                      required
-                    />
-                  </div>
 
-                  {/* Email */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-bold text-slate-400 tracking-wider uppercase ml-1">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      value={profileEmail}
-                      onChange={(e) => setProfileEmail(e.target.value)}
-                      disabled={profileLoading}
-                      className="w-full px-4 py-2.5 rounded-2xl glass-input bg-slate-900/30 text-slate-100 placeholder-slate-600 text-xs font-semibold"
-                      required
-                    />
-                  </div>
 
                   {/* Password change */}
                   <div className="flex flex-col gap-1.5">
