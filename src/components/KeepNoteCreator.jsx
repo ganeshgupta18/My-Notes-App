@@ -121,6 +121,18 @@ const KeepNoteCreator = ({ onSave }) => {
     }
   };
 
+  // Audio save handler to set state and expand creator bar
+  const handleAudioSave = (audioData) => {
+    setAudio(audioData);
+    setIsExpanded(true);
+  };
+
+  // Drawing save handler to set state and expand creator bar
+  const handleDrawingSave = (drawingData) => {
+    setDrawing(drawingData);
+    setIsExpanded(true);
+  };
+
   // Checklist utilities
   const handleAddChecklistItem = () => {
     if (newItemText.trim()) {
@@ -509,7 +521,7 @@ const KeepNoteCreator = ({ onSave }) => {
       <DrawingCanvas
         isOpen={isCanvasOpen}
         onClose={() => setIsCanvasOpen(false)}
-        onSave={setDrawing}
+        onSave={handleDrawingSave}
         initialDrawing={drawing}
       />
 
@@ -517,7 +529,7 @@ const KeepNoteCreator = ({ onSave }) => {
       <AudioRecorder
         isOpen={isAudioOpen}
         onClose={() => setIsAudioOpen(false)}
-        onSave={setAudio}
+        onSave={handleAudioSave}
       />
     </div>
   );
