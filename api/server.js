@@ -33,9 +33,15 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors());
 
-// Establish Database Connection
-connectDB().catch(err => {
-  console.error('Failed to establish database connection during initialization:', err.message);
+// Ensure database is connected before handling any request (critical for serverless environments)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('Database connection error in middleware:', error.message);
+    res.status(500).json({ success: false, message: 'Database connection failed' });
+  }
 });
 
 // Basic health check
