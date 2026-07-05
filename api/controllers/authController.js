@@ -88,7 +88,17 @@ export const forgotPassword = async (req, res) => {
 
     // Build absolute URL for client
     const protocol = req.headers['x-forwarded-proto'] || req.protocol;
-    const clientUrl = process.env.CLIENT_URL || `${protocol}://${req.get('host')}`;
+    let clientUrl = process.env.CLIENT_URL || `${protocol}://${req.get('host')}`;
+
+    // Sanitize clientUrl to get only the origin (no trailing slashes or subpaths like /login)
+    try {
+      clientUrl = new URL(clientUrl).origin;
+    } catch (e) {
+      if (clientUrl.endsWith('/')) {
+        clientUrl = clientUrl.slice(0, -1);
+      }
+    }
+
     const resetUrl = `${clientUrl}/reset-password/${resetToken}`;
 
     // Mail options
