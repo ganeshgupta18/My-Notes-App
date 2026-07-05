@@ -112,7 +112,7 @@ const ForgotPassword = () => {
                 <IoMailOutline className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
                 <input
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="enter email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-11 pr-4 py-3 rounded-2xl glass-input bg-slate-900/30 text-slate-200 placeholder-slate-650 text-sm font-semibold"

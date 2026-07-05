@@ -109,7 +109,7 @@ const Navbar = ({ searchQuery, onSearchChange, onMenuToggle, onOpenProfile, view
             placeholder="Search..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-8.5 pr-2.5 py-1.5 text-xs sm:text-sm rounded-xl glass-input bg-slate-900/40 text-slate-200 placeholder-slate-500"
+            className="w-full pl-9 pr-2.5 py-1.5 text-xs sm:text-sm rounded-xl glass-input bg-slate-900/40 text-slate-200 placeholder-slate-500"
           />
         </div>
       </div>

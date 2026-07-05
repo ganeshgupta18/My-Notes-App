@@ -87,7 +87,8 @@ export const forgotPassword = async (req, res) => {
     await user.save({ validateBeforeSave: false });
 
     // Build absolute URL for client
-    const clientUrl = process.env.CLIENT_URL || `${req.protocol}://${req.get('host')}`;
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+    const clientUrl = process.env.CLIENT_URL || `${protocol}://${req.get('host')}`;
     const resetUrl = `${clientUrl}/reset-password/${resetToken}`;
 
     // Mail options
@@ -114,12 +115,13 @@ export const forgotPassword = async (req, res) => {
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       const cleanPass = process.env.EMAIL_PASS.replace(/\s/g, '');
       const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
+        service: 'gmail',
         auth: {
           user: process.env.EMAIL_USER,
           pass: cleanPass,
+        },
+        tls: {
+          rejectUnauthorized: false,
         },
       });
 
