@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { IoMailOutline, IoLockClosedOutline, IoAlertCircleOutline } from 'react-icons/io5';
+import InstallStrip from '../components/InstallStrip';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +30,9 @@ const Login = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-slate-950 flex items-center justify-center p-4 bg-grid overflow-hidden">
+    <div className="relative min-h-screen bg-slate-950 flex flex-col items-center justify-center pt-20 pb-6 px-4 bg-grid overflow-hidden">
+      <InstallStrip />
+
       {/* Background Orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full aurora-glow-1 -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full aurora-glow-2 translate-x-1/2 translate-y-1/2 blur-3xl pointer-events-none" />
