@@ -125,7 +125,9 @@ export const forgotPassword = async (req, res) => {
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       const cleanPass = process.env.EMAIL_PASS.replace(/\s/g, '');
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true, // true for 465, false for other ports
         auth: {
           user: process.env.EMAIL_USER,
           pass: cleanPass,
@@ -149,7 +151,7 @@ export const forgotPassword = async (req, res) => {
     }
   } catch (error) {
     console.error('Password reset email error:', error);
-    return res.status(500).json({ success: false, message: 'Email could not be sent' });
+    return res.status(500).json({ success: false, message: `Email could not be sent: ${error.message}` });
   }
 };
 
